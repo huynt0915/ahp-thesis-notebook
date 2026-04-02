@@ -922,39 +922,94 @@
     <div class="card">
       <div class="section-header">
         <div class="section-num">5</div>
-        <h2>Kiểm định tính nhất quán (CR)</h2>
+        <h2>Kiểm định tính nhất quán (Consistency Ratio — CR)</h2>
       </div>
 
-      <p>Tính nhất quán của ma trận so sánh cặp được kiểm định qua Tỷ số Nhất quán $CR$. Tiêu chuẩn của Saaty (1980) quy định: $CR \leq 0.10$ là chấp nhận được; ma trận có $CR > 0.10$ phải được xem xét lại để đảm bảo độ tin cậy.</p>
+      <p>CR (Tỷ số nhất quán) đo mức độ mâu thuẫn trong các phán đoán của chuyên gia. Theo Saaty (1980), CR &lt; 0.10 là ngưỡng chấp nhận được. Quá trình kiểm định được thực hiện qua <strong>hai bước bắt buộc</strong>: kiểm tra CR từng cá nhân trước khi tổng hợp, sau đó kiểm tra CR của ma trận tổng hợp cuối cùng.</p>
 
-      <div class="badge-big">
-        <div class="check">✅</div>
-        <div>
-          <div class="text">86/86 chuyên gia đạt CR ≤ 0.10</div>
-          <div class="sub">Tỷ lệ hợp lệ: 100.0% — Không có đánh giá nào bị loại</div>
-        </div>
+      <div class="formula-box">
+        $$\lambda_{max} = \frac{1}{n}\sum_{i=1}^{n}\frac{(A\mathbf{w})_i}{w_i}$$
+        $$CI = \frac{\lambda_{max} - n}{n - 1}, \quad CR = \frac{CI}{RI}$$
       </div>
 
-      <h3>Tổng hợp CR theo nhóm ma trận</h3>
+      <h3>Bảng chỉ số ngẫu nhiên RI (Saaty, 1980)</h3>
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>Nhóm ma trận</th><th>Cỡ ma trận</th><th>CR trung bình</th><th>CR tối đa</th><th>Hợp lệ</th></tr>
+            <tr><th>n</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
           </thead>
           <tbody>
-            <tr><td>Ma trận tiêu chí (C)</td><td>3×3</td><td>0.0092</td><td>0.0986</td><td>86/86</td></tr>
-            <tr><td>Ma trận phương án theo C1</td><td>3×3</td><td>0.0108</td><td>0.0974</td><td>86/86</td></tr>
-            <tr><td>Ma trận phương án theo C2</td><td>3×3</td><td>0.0115</td><td>0.0991</td><td>86/86</td></tr>
-            <tr><td>Ma trận phương án theo C3</td><td>3×3</td><td>0.0103</td><td>0.0978</td><td>86/86</td></tr>
+            <tr><td>RI</td><td>0.00</td><td>0.00</td><td>0.58</td><td>0.90</td><td>1.12</td><td>1.24</td><td>1.32</td><td>1.41</td><td>1.45</td><td>1.49</td></tr>
           </tbody>
         </table>
+      </div>
+
+      <!-- BƯỚC 1 -->
+      <div style="margin: 28px 0 0; padding: 20px 24px; background: #eff6ff; border-left: 4px solid #2563eb; border-radius: 8px;">
+        <h3 style="color:#1e3a5f; margin-bottom:10px;">Bước 1: Kiểm tra CR cá nhân (Individual CR)</h3>
+        <p>Trước khi tổng hợp, tính CR cho từng bảng trả lời gốc của mỗi chuyên gia. Nếu CR &gt; 0.10, loại bỏ phiếu đó khỏi phân tích.</p>
+      </div>
+
+      <div class="table-wrap" style="margin-top:16px;">
+        <table>
+          <thead>
+            <tr><th>Nhóm ma trận</th><th>CR &lt; 0.10</th><th>CR trung bình</th><th>CR lớn nhất</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Tiêu chí (C1-C2-C3)</td><td>86/86 (100%)</td><td>0.0210</td><td>0.0634</td></tr>
+            <tr><td>Phương án theo C1</td><td>86/86 (100%)</td><td>0.0407</td><td>0.0930</td></tr>
+            <tr><td>Phương án theo C2</td><td>86/86 (100%)</td><td>0.0428</td><td>0.0930</td></tr>
+            <tr><td>Phương án theo C3</td><td>86/86 (100%)</td><td>0.0395</td><td>0.0930</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="badge-big" style="margin-top:16px;">
+        <div class="check">✅</div>
+        <div>
+          <div class="text">86/86 phiếu hợp lệ — Giữ nguyên toàn bộ mẫu</div>
+          <div class="sub">Tỷ lệ hợp lệ: 100.0% — Không có phiếu nào bị loại khỏi phân tích</div>
+        </div>
       </div>
 
       <img src="images/img_001.png" class="chart-img" alt="Phân phối CR 4 nhóm ma trận">
       <p class="chart-caption">Hình 2. Phân phối giá trị CR của 86 chuyên gia trên 4 nhóm ma trận so sánh cặp</p>
 
       <div class="callout green">
-        <strong>Nhận xét:</strong> Toàn bộ 86 chuyên gia (100%) có giá trị CR thấp hơn ngưỡng 0.10 trên tất cả 4 nhóm ma trận. Giá trị CR trung bình dao động từ 0.009 đến 0.012 — thấp hơn nhiều so với ngưỡng cho phép — cho thấy các đánh giá chuyên gia có tính nhất quán rất cao. Đây là cơ sở tin cậy để tiến hành tổng hợp và suy luận từ dữ liệu.
+        <strong>Kết quả Bước 1:</strong> Tất cả 86 chuyên gia đều đáp ứng ngưỡng CR &lt; 0.10 trên cả 4 nhóm ma trận. Không có phiếu nào bị loại khỏi phân tích.
+      </div>
+
+      <!-- BƯỚC 2 -->
+      <div style="margin: 28px 0 0; padding: 20px 24px; background: #f0fdf4; border-left: 4px solid #16a34a; border-radius: 8px;">
+        <h3 style="color:#14532d; margin-bottom:10px;">Bước 2: Kiểm tra CR nhóm (Group CR)</h3>
+        <p>Sau khi tổng hợp các phán đoán bằng phương pháp AIJ (Geometric Mean), tiến hành kiểm tra CR cho ma trận tổng hợp cuối cùng để đảm bảo kết quả nhóm có tính nhất quán.</p>
+      </div>
+
+      <p style="margin-top:14px;">Công thức tổng hợp AIJ (trung bình hình học):</p>
+      <div class="formula-box">
+        $$a_{ij}^{Group} = \sqrt[k]{a_{ij}^{(1)} \times a_{ij}^{(2)} \times \cdots \times a_{ij}^{(k)}}$$
+      </div>
+
+      <div class="table-wrap" style="margin-top:16px;">
+        <table>
+          <thead>
+            <tr><th>Ma trận tổng hợp</th><th>λ<sub>max</sub></th><th>CR nhóm</th><th>Đánh giá</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Tiêu chí (C1-C2-C3)</td><td>3.0127</td><td>0.0109</td><td>✅ Nhất quán</td></tr>
+            <tr><td>Phương án theo C1</td><td>3.0342</td><td>0.0295</td><td>✅ Nhất quán</td></tr>
+            <tr><td>Phương án theo C2</td><td>3.0357</td><td>0.0308</td><td>✅ Nhất quán</td></tr>
+            <tr><td>Phương án theo C3</td><td>3.0361</td><td>0.0311</td><td>✅ Nhất quán</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout green" style="margin-top:16px;">
+        <strong>Kết quả Bước 2:</strong> ✅ Tất cả ma trận tổng hợp đều có CR &lt; 0.10 — Kết quả nhóm đạt tính nhất quán.
+      </div>
+
+      <div class="callout" style="margin-top:16px; background:var(--amber-light); border-color:var(--amber);">
+        <strong>Kết luận:</strong> Kết quả Bước 2 cho thấy quá trình tổng hợp AIJ không làm mất tính nhất quán của dữ liệu. Cả hai điều kiện nhất quán đều được thỏa mãn, đảm bảo độ tin cậy của phân tích.
       </div>
     </div>
   </div>
@@ -969,6 +1024,7 @@
         <h2>Ma trận tổng hợp AIJ</h2>
       </div>
 
+      <p style="background:#eff6ff; border-left:4px solid #2563eb; padding:12px 16px; border-radius:6px; margin-bottom:16px;">Sau khi xác nhận CR cá nhân hợp lệ (Bước 1), tiến hành tổng hợp ma trận theo phương pháp AIJ — kết quả tổng hợp này sẽ được kiểm tra lại CR nhóm ở Bước 2.</p>
       <p>Phương pháp Tổng hợp Phán đoán Cá nhân (AIJ — Aggregation of Individual Judgments) tổng hợp đánh giá của toàn bộ 86 chuyên gia thành một ma trận duy nhất thông qua trung bình hình học:</p>
       <div class="formula-box">
         $$a_{ij}^{AIJ} = \left(\prod_{e=1}^{86} a_{ij}^{(e)}\right)^{1/86}$$
